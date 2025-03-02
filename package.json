@@ -1,6 +1,6 @@
 {
   "name": "sekai-images",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Image generator for Project Sekai",
   "main": "./dist/index.js",
   "files": [
