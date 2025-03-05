@@ -39,17 +39,17 @@ export default class LeaderCardImage {
 		const lvlText = await sharp({
 			text: {
 				text: `<span color="#FFFFFF">Lv.${this.cardData.level}</span>`,
-				font: "FOT-RodinNTLG Pro DB",
-				fontfile: path.join(ASSETS_PATH, "font", "FOT-RodinNTLGPro-DB.otf"),
+				font: "FOT-RodinNTLG Pro EB",
+				fontfile: path.join(ASSETS_PATH, "font", "FOT-RodinNTLGPro-EB.otf"),
 				rgba: true,
-				dpi: 130
+				dpi: 115
 			}
 		}).png().toBuffer()
 
 		const composites = [
 			{input: rectImg, left: 0, top: 102},
 			{input: borderImg, left: 0, top: 0},
-			{input: lvlText, left: 8, top: 104},
+			{input: lvlText, left: 8, top: 105},
 			{input: attributeImg, left: 2, top: 0}
 		]
 
