@@ -17,12 +17,14 @@ export class EventHonorImage {
 	public rankImage: Buffer
 	public frameImage?: Buffer
 	public honorRarity: HonorRarity
+	public isWorldLink?: boolean
 
-	constructor({backgroundImage, rankImage, frameImage, honorRarity}: {backgroundImage: Buffer, rankImage: Buffer, frameImage?: Buffer, honorRarity: HonorRarity}) {
+	constructor({backgroundImage, rankImage, frameImage, honorRarity, isWorldLink}: {backgroundImage: Buffer, rankImage: Buffer, frameImage?: Buffer, honorRarity: HonorRarity, isWorldLink?: boolean}) {
 		this.backgroundImage = backgroundImage
 		this.rankImage = rankImage
 		this.frameImage = frameImage
 		this.honorRarity = honorRarity
+		this.isWorldLink = isWorldLink
 	}
 
 	public async create() {
@@ -34,7 +36,7 @@ export class EventHonorImage {
 		const rankImg = await sharp(this.rankImage).toBuffer()
 
 		const frameComposite = {input: frameImg, left: this.honorRarity === "low" ? 8 : 0, top: 0}
-		const rankComposite = this.frameImage ? {input: rankImg, left: 0, top: 0} : {input: rankImg, left: 190, top: 1}
+		const rankComposite = this.isWorldLink ? {input: rankImg, left: 0, top: 0} : {input: rankImg, left: 190, top: 1}
 		
 		const composites = [
 			frameComposite,
@@ -50,12 +52,14 @@ export class EventHonorSubImage {
 	public rankImage: Buffer
 	public frameImage?: Buffer
 	public honorRarity: HonorRarity
+	public isWorldLink?: boolean
 
-	constructor({backgroundImage, rankImage, frameImage, honorRarity}: {backgroundImage: Buffer, rankImage: Buffer, frameImage?: Buffer, honorRarity: HonorRarity}) {
+	constructor({backgroundImage, rankImage, frameImage, honorRarity, isWorldLink}: {backgroundImage: Buffer, rankImage: Buffer, frameImage?: Buffer, honorRarity: HonorRarity, isWorldLink?: boolean}) {
 		this.backgroundImage = backgroundImage
 		this.rankImage = rankImage
 		this.frameImage = frameImage
 		this.honorRarity = honorRarity
+		this.isWorldLink = isWorldLink
 	}
 
 	public async create() {
@@ -67,7 +71,7 @@ export class EventHonorSubImage {
 		const rankImg = await sharp(this.rankImage).toBuffer()
 
 		const frameComposite = {input: frameImg, left: this.honorRarity === "low" ? 8 : 0, top: 0}
-		const rankComposite = this.frameImage ? {input: rankImg, left: 0, top: 0} : {input: rankImg, left: 30, top: 42}
+		const rankComposite = this.isWorldLink ? {input: rankImg, left: 0, top: 0} : {input: rankImg, left: 30, top: 42}
 		
 		const composites = [
 			frameComposite,
