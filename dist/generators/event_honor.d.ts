@@ -4,26 +4,26 @@ type HonorRarity = "highest" | "high" | "middle" | "low";
 export declare class EventHonorImage {
     backgroundImage: Buffer;
     rankImage: Buffer;
+    frameImage?: Buffer;
     honorRarity: HonorRarity;
-    frameName: string;
-    constructor({ backgroundImage, rankImage, honorRarity, frameName }: {
+    constructor({ backgroundImage, rankImage, frameImage, honorRarity }: {
         backgroundImage: Buffer;
         rankImage: Buffer;
+        frameImage?: Buffer;
         honorRarity: HonorRarity;
-        frameName?: string;
     });
     create(): Promise<Buffer>;
 }
 export declare class EventHonorSubImage {
     backgroundImage: Buffer;
     rankImage: Buffer;
+    frameImage?: Buffer;
     honorRarity: HonorRarity;
-    frameName: string;
-    constructor({ backgroundImage, rankImage, honorRarity, frameName }: {
+    constructor({ backgroundImage, rankImage, frameImage, honorRarity }: {
         backgroundImage: Buffer;
         rankImage: Buffer;
+        frameImage?: Buffer;
         honorRarity: HonorRarity;
-        frameName?: string;
     });
     create(): Promise<Buffer>;
 }
