@@ -18,13 +18,13 @@ class EventHonorImage {
     rankImage;
     frameImage;
     honorRarity;
-    isWorldLink;
-    constructor({ backgroundImage, rankImage, frameImage, honorRarity, isWorldLink }) {
+    isWorldlinkChapter;
+    constructor({ backgroundImage, rankImage, frameImage, honorRarity, isWorldlinkChapter }) {
         this.backgroundImage = backgroundImage;
         this.rankImage = rankImage;
         this.frameImage = frameImage;
         this.honorRarity = honorRarity;
-        this.isWorldLink = isWorldLink;
+        this.isWorldlinkChapter = isWorldlinkChapter;
     }
     async create() {
         const baseImg = (0, sharp_1.default)(this.backgroundImage).resize(380, 80, { fit: "fill" });
@@ -32,7 +32,7 @@ class EventHonorImage {
         const frameImg = this.frameImage ? await (0, sharp_1.default)(this.frameImage).toBuffer() : await (0, sharp_1.default)(framePath).toBuffer();
         const rankImg = await (0, sharp_1.default)(this.rankImage).toBuffer();
         const frameComposite = { input: frameImg, left: this.honorRarity === "low" ? 8 : 0, top: 0 };
-        const rankComposite = this.isWorldLink ? { input: rankImg, left: 0, top: 0 } : { input: rankImg, left: 190, top: 1 };
+        const rankComposite = this.isWorldlinkChapter ? { input: rankImg, left: 0, top: 0 } : { input: rankImg, left: 190, top: 1 };
         const composites = [
             frameComposite,
             rankComposite
@@ -46,13 +46,13 @@ class EventHonorSubImage {
     rankImage;
     frameImage;
     honorRarity;
-    isWorldLink;
-    constructor({ backgroundImage, rankImage, frameImage, honorRarity, isWorldLink }) {
+    isWorldlinkChapter;
+    constructor({ backgroundImage, rankImage, frameImage, honorRarity, isWorldlinkChapter }) {
         this.backgroundImage = backgroundImage;
         this.rankImage = rankImage;
         this.frameImage = frameImage;
         this.honorRarity = honorRarity;
-        this.isWorldLink = isWorldLink;
+        this.isWorldlinkChapter = isWorldlinkChapter;
     }
     async create() {
         const baseImg = (0, sharp_1.default)(this.backgroundImage).resize(180, 80, { fit: "fill" });
@@ -60,7 +60,7 @@ class EventHonorSubImage {
         const frameImg = this.frameImage ? await (0, sharp_1.default)(this.frameImage).toBuffer() : await (0, sharp_1.default)(framePath).toBuffer();
         const rankImg = await (0, sharp_1.default)(this.rankImage).toBuffer();
         const frameComposite = { input: frameImg, left: this.honorRarity === "low" ? 8 : 0, top: 0 };
-        const rankComposite = this.isWorldLink ? { input: rankImg, left: 0, top: 0 } : { input: rankImg, left: 30, top: 42 };
+        const rankComposite = this.isWorldlinkChapter ? { input: rankImg, left: 0, top: 0 } : { input: rankImg, left: 30, top: 42 };
         const composites = [
             frameComposite,
             rankComposite

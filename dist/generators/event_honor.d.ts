@@ -6,13 +6,13 @@ export declare class EventHonorImage {
     rankImage: Buffer;
     frameImage?: Buffer;
     honorRarity: HonorRarity;
-    isWorldLink?: boolean;
-    constructor({ backgroundImage, rankImage, frameImage, honorRarity, isWorldLink }: {
+    isWorldlinkChapter?: boolean;
+    constructor({ backgroundImage, rankImage, frameImage, honorRarity, isWorldlinkChapter }: {
         backgroundImage: Buffer;
         rankImage: Buffer;
         frameImage?: Buffer;
         honorRarity: HonorRarity;
-        isWorldLink?: boolean;
+        isWorldlinkChapter?: boolean;
     });
     create(): Promise<Buffer>;
 }
@@ -21,13 +21,13 @@ export declare class EventHonorSubImage {
     rankImage: Buffer;
     frameImage?: Buffer;
     honorRarity: HonorRarity;
-    isWorldLink?: boolean;
-    constructor({ backgroundImage, rankImage, frameImage, honorRarity, isWorldLink }: {
+    isWorldlinkChapter?: boolean;
+    constructor({ backgroundImage, rankImage, frameImage, honorRarity, isWorldlinkChapter }: {
         backgroundImage: Buffer;
         rankImage: Buffer;
         frameImage?: Buffer;
         honorRarity: HonorRarity;
-        isWorldLink?: boolean;
+        isWorldlinkChapter?: boolean;
     });
     create(): Promise<Buffer>;
 }
