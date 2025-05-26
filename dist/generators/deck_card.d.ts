@@ -1,16 +1,18 @@
 /// <reference types="node" />
 /// <reference types="node" />
-import { UserCard } from "sekai-api";
+import { UserCardSpecialTrainingStatus } from "sekai-api";
 interface CardData {
+    level: number;
+    masteryRank: number;
+    specialTrainingStatus: UserCardSpecialTrainingStatus;
     cardRarityType: "rarity_1" | "rarity_2" | "rarity_3" | "rarity_4" | "rarity_birthday";
     attr: "cool" | "cute" | "happy" | "mysterious" | "pure";
+    slot: number;
+    memberImage: Buffer;
 }
 export default class DeckCardImage {
-    private userCard;
     private cardData;
-    private memberImage;
-    private slot;
-    constructor(userCard: UserCard, cardData: CardData, memberImage: Buffer, slot?: number);
+    constructor(data: CardData);
     create(): Promise<Buffer>;
 }
 export {};
