@@ -20,7 +20,7 @@
   "author": "aamiaa",
   "dependencies": {
     "sekai-api": "github:aamiaa/sekai-api",
-    "sharp": "^0.33.5"
+    "sharp": "^0.34.2"
   },
   "devDependencies": {
     "@types/node": "^22.10.1"
