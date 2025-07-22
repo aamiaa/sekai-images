@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = __importDefault(require("path"));
 const sharp_1 = __importDefault(require("sharp"));
 const consts_1 = require("../consts");
-const sekai_api_1 = require("sekai-api");
 class DeckCardImage {
     cardData;
     constructor(data) {
@@ -16,7 +15,7 @@ class DeckCardImage {
         const isBirthday = this.cardData.cardRarityType === "rarity_birthday";
         const isLeader = this.cardData.slot === 0;
         const isSubleader = this.cardData.slot === 1;
-        const isTrained = this.cardData.specialTrainingStatus === sekai_api_1.UserCardSpecialTrainingStatus.DONE;
+        const isTrained = this.cardData.specialTrainingStatus === consts_1.UserCardSpecialTrainingStatus.DONE;
         const rarity = parseInt(this.cardData.cardRarityType.slice(-1));
         const charImg = (0, sharp_1.default)(this.cardData.memberImage).resize(312, 510);
         const borderImg = await (0, sharp_1.default)(path_1.default.join(consts_1.ASSETS_PATH, isBirthday ? "cardFrame_M_bd.png" : `cardFrame_M_${rarity}.png`)).resize(312, 510, { fit: "fill" }).toBuffer();

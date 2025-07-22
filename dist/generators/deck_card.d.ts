@@ -1,6 +1,4 @@
-/// <reference types="node" />
-/// <reference types="node" />
-import { UserCardSpecialTrainingStatus } from "sekai-api";
+import { UserCardSpecialTrainingStatus } from "../consts";
 interface CardData {
     level: number;
     masteryRank: number;
@@ -13,6 +11,6 @@ interface CardData {
 export default class DeckCardImage {
     private cardData;
     constructor(data: CardData);
-    create(): Promise<Buffer>;
+    create(): Promise<Buffer<ArrayBufferLike>>;
 }
 export {};

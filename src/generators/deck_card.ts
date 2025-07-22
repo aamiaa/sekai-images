@@ -1,7 +1,6 @@
 import path from "path"
 import sharp from "sharp"
-import { ASSETS_PATH } from "../consts"
-import { UserCardSpecialTrainingStatus } from "sekai-api"
+import { ASSETS_PATH, UserCardSpecialTrainingStatus } from "../consts"
 
 interface CardData {
 	level: number,

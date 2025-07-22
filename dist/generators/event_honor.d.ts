@@ -1,5 +1,3 @@
-/// <reference types="node" />
-/// <reference types="node" />
 type HonorRarity = "highest" | "high" | "middle" | "low";
 export declare class EventHonorImage {
     backgroundImage: Buffer;
@@ -14,7 +12,7 @@ export declare class EventHonorImage {
         honorRarity: HonorRarity;
         isWorldlinkChapter?: boolean;
     });
-    create(): Promise<Buffer>;
+    create(): Promise<Buffer<ArrayBufferLike>>;
 }
 export declare class EventHonorSubImage {
     backgroundImage: Buffer;
@@ -29,6 +27,6 @@ export declare class EventHonorSubImage {
         honorRarity: HonorRarity;
         isWorldlinkChapter?: boolean;
     });
-    create(): Promise<Buffer>;
+    create(): Promise<Buffer<ArrayBufferLike>>;
 }
 export {};
