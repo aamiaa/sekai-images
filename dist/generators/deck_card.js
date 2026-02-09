@@ -61,12 +61,12 @@ class DeckCardImage {
             composites.push({ input: ribbonImg, left: 150, top: 0 });
         }
         let result = charImg.composite(composites);
-        if (format === "webp") {
-            result = result.webp();
-        }
         if (size) {
             // This hack is needed as otherwise sharp complains about composite size
             result = (0, sharp_1.default)(await result.toBuffer()).resize(size);
+        }
+        if (format === "webp") {
+            result = result.webp({ nearLossless: true });
         }
         return await result.toBuffer();
     }

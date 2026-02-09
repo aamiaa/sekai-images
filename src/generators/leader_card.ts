@@ -66,12 +66,12 @@ export default class LeaderCardImage {
 		}
 
 		let result = charImg.composite(composites)
-		if(format === "webp") {
-			result = result.webp()
-		}
 		if(size) {
 			// This hack is needed as otherwise sharp complains about composite size
 			result = sharp(await result.toBuffer()).resize(size)
+		}
+		if(format === "webp") {
+			result = result.webp({nearLossless: true})
 		}
 		return await result.toBuffer()
 	}
