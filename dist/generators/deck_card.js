@@ -11,7 +11,7 @@ class DeckCardImage {
     constructor(data) {
         this.cardData = data;
     }
-    async create() {
+    async create({ format, size }) {
         const isBirthday = this.cardData.cardRarityType === "rarity_birthday";
         const isLeader = this.cardData.slot === 0;
         const isSubleader = this.cardData.slot === 1;
@@ -60,7 +60,15 @@ class DeckCardImage {
             const ribbonImg = await (0, sharp_1.default)(path_1.default.join(consts_1.ASSETS_PATH, isLeader ? "label_mark_leader_L_pk.png" : "label_mark_subLeader_L_gr.png")).resize(162, 93).toBuffer();
             composites.push({ input: ribbonImg, left: 150, top: 0 });
         }
-        return await charImg.composite(composites).toBuffer();
+        let result = charImg.composite(composites);
+        if (format === "webp") {
+            result = result.webp();
+        }
+        if (size) {
+            // This hack is needed as otherwise sharp complains about composite size
+            result = (0, sharp_1.default)(await result.toBuffer()).resize(size);
+        }
+        return await result.toBuffer();
     }
 }
 exports.default = DeckCardImage;

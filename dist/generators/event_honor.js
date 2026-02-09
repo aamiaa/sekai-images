@@ -26,7 +26,7 @@ class EventHonorImage {
         this.honorRarity = honorRarity;
         this.isWorldlinkChapter = isWorldlinkChapter;
     }
-    async create() {
+    async create({ format, size }) {
         const baseImg = (0, sharp_1.default)(this.backgroundImage).resize(380, 80, { fit: "fill" });
         const framePath = path_1.default.join(consts_1.ASSETS_PATH, `frame_degree_m_${RarityMap[this.honorRarity]}.png`);
         const frameImg = this.frameImage ? await (0, sharp_1.default)(this.frameImage).toBuffer() : await (0, sharp_1.default)(framePath).toBuffer();
@@ -37,7 +37,15 @@ class EventHonorImage {
             frameComposite,
             rankComposite
         ];
-        return await baseImg.composite(composites).toBuffer();
+        let result = baseImg.composite(composites);
+        if (format === "webp") {
+            result = result.webp();
+        }
+        if (size) {
+            // This hack is needed as otherwise sharp complains about composite size
+            result = (0, sharp_1.default)(await result.toBuffer()).resize(size);
+        }
+        return await result.toBuffer();
     }
 }
 exports.EventHonorImage = EventHonorImage;
@@ -54,7 +62,7 @@ class EventHonorSubImage {
         this.honorRarity = honorRarity;
         this.isWorldlinkChapter = isWorldlinkChapter;
     }
-    async create() {
+    async create({ format, size }) {
         const baseImg = (0, sharp_1.default)(this.backgroundImage).resize(180, 80, { fit: "fill" });
         const framePath = path_1.default.join(consts_1.ASSETS_PATH, `frame_degree_s_${RarityMap[this.honorRarity]}.png`);
         const frameImg = this.frameImage ? await (0, sharp_1.default)(this.frameImage).toBuffer() : await (0, sharp_1.default)(framePath).toBuffer();
@@ -65,7 +73,15 @@ class EventHonorSubImage {
             frameComposite,
             rankComposite
         ];
-        return await baseImg.composite(composites).toBuffer();
+        let result = baseImg.composite(composites);
+        if (format === "webp") {
+            result = result.webp();
+        }
+        if (size) {
+            // This hack is needed as otherwise sharp complains about composite size
+            result = (0, sharp_1.default)(await result.toBuffer()).resize(size);
+        }
+        return await result.toBuffer();
     }
 }
 exports.EventHonorSubImage = EventHonorSubImage;

@@ -1,7 +1,6 @@
 import path from "path"
 import sharp from "sharp"
 import { ASSETS_PATH } from "../consts"
-import fs from "fs"
 
 type HonorRarity = "highest" | "high" | "middle" | "low"
 
@@ -27,7 +26,7 @@ export class EventHonorImage {
 		this.isWorldlinkChapter = isWorldlinkChapter
 	}
 
-	public async create() {
+	public async create({format, size}: {format: "png" | "webp", size?: number}) {
 		const baseImg = sharp(this.backgroundImage).resize(380, 80, {fit: "fill"})
 		
 		const framePath = path.join(ASSETS_PATH, `frame_degree_m_${RarityMap[this.honorRarity]}.png`)
@@ -43,7 +42,15 @@ export class EventHonorImage {
 			rankComposite
 		]
 
-		return await baseImg.composite(composites).toBuffer()
+		let result = baseImg.composite(composites)
+		if(format === "webp") {
+			result = result.webp()
+		}
+		if(size) {
+			// This hack is needed as otherwise sharp complains about composite size
+			result = sharp(await result.toBuffer()).resize(size)
+		}
+		return await result.toBuffer()
 	}
 }
 
@@ -62,7 +69,7 @@ export class EventHonorSubImage {
 		this.isWorldlinkChapter = isWorldlinkChapter
 	}
 
-	public async create() {
+	public async create({format, size}: {format: "png" | "webp", size?: number}) {
 		const baseImg = sharp(this.backgroundImage).resize(180, 80, {fit: "fill"})
 		
 		const framePath = path.join(ASSETS_PATH, `frame_degree_s_${RarityMap[this.honorRarity]}.png`)
@@ -78,6 +85,14 @@ export class EventHonorSubImage {
 			rankComposite
 		]
 
-		return await baseImg.composite(composites).toBuffer()
+		let result = baseImg.composite(composites)
+		if(format === "webp") {
+			result = result.webp()
+		}
+		if(size) {
+			// This hack is needed as otherwise sharp complains about composite size
+			result = sharp(await result.toBuffer()).resize(size)
+		}
+		return await result.toBuffer()
 	}
 }

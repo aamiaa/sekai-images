@@ -12,7 +12,10 @@ export declare class EventHonorImage {
         honorRarity: HonorRarity;
         isWorldlinkChapter?: boolean;
     });
-    create(): Promise<Buffer<ArrayBufferLike>>;
+    create({ format, size }: {
+        format: "png" | "webp";
+        size?: number;
+    }): Promise<Buffer>;
 }
 export declare class EventHonorSubImage {
     backgroundImage: Buffer;
@@ -27,6 +30,9 @@ export declare class EventHonorSubImage {
         honorRarity: HonorRarity;
         isWorldlinkChapter?: boolean;
     });
-    create(): Promise<Buffer<ArrayBufferLike>>;
+    create({ format, size }: {
+        format: "png" | "webp";
+        size?: number;
+    }): Promise<Buffer>;
 }
 export {};

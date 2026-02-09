@@ -18,7 +18,7 @@ export default class LeaderCardImage {
 		this.cardData = data
 	}
 
-	public async create() {
+	public async create({format, size}: {format: "png" | "webp", size?: number}) {
 		const isBirthday = this.cardData.cardRarityType === "rarity_birthday"
 		const isTrained = this.cardData.specialTrainingStatus === UserCardSpecialTrainingStatus.DONE
 		const rarity = parseInt(this.cardData.cardRarityType.slice(-1))
@@ -65,6 +65,14 @@ export default class LeaderCardImage {
 			composites.push({input: mrImg, left: 83, top: 83})
 		}
 
-		return await charImg.composite(composites).toBuffer()
+		let result = charImg.composite(composites)
+		if(format === "webp") {
+			result = result.webp()
+		}
+		if(size) {
+			// This hack is needed as otherwise sharp complains about composite size
+			result = sharp(await result.toBuffer()).resize(size)
+		}
+		return await result.toBuffer()
 	}
 }

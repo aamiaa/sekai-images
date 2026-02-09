@@ -10,6 +10,9 @@ interface CardData {
 export default class LeaderCardImage {
     private cardData;
     constructor(data: CardData);
-    create(): Promise<Buffer<ArrayBufferLike>>;
+    create({ format, size }: {
+        format: "png" | "webp";
+        size?: number;
+    }): Promise<Buffer>;
 }
 export {};
